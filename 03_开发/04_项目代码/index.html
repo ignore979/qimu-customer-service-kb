@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>栖木家居客服知识库</title>
+  <link rel="stylesheet" href="/static/style.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <span class="brand-logo">栖</span>
+      <div class="brand-text">
+        <h1>栖木家居客服知识库</h1>
+        <p>输入用户问题，快速定位产品使用与售后处理依据</p>
+      </div>
+    </div>
+    <div class="topbar-meta">
+      <span class="meta-pill">资料版本 2026-10</span>
+      <span class="meta-pill">本地结构化索引检索</span>
+      <a class="meta-pill meta-link" href="/admin">索引管理</a>
+    </div>
+  </header>
+
+  <main class="layout">
+    <!-- 搜索区 -->
+    <section class="search-panel">
+      <form id="searchForm" class="search-form" autocomplete="off">
+        <textarea
+          id="questionInput"
+          class="question-input"
+          rows="2"
+          maxlength="500"
+          placeholder="例如：用户刚从冰箱取出玻璃杯，能否马上倒入热水？"
+        ></textarea>
+        <div class="search-actions">
+          <button type="submit" id="searchBtn" class="btn-primary">检索知识库</button>
+          <button type="button" id="clearBtn" class="btn-ghost">清空</button>
+        </div>
+      </form>
+
+      <div class="quick-questions">
+        <span class="quick-label">快捷示例：</span>
+        <button class="chip" data-q="用户刚从冰箱取出玻璃杯，能否马上倒入热水？">玻璃杯冷藏后倒热水</button>
+        <button class="chip" data-q="BX-500 保温杯能保温多久？在什么条件下测得？">保温杯保温时长</button>
+        <button class="chip" data-q="用户收到杯子后发现裂纹，客服应先提醒什么？">收到杯子有裂纹</button>
+        <button class="chip" data-q="BH-1000 保温壶如何清洗壶内与出水口？">保温壶清洁</button>
+      </div>
+    </section>
+
+    <!-- 提示 / 状态条 -->
+    <div id="statusBar" class="status-bar" hidden></div>
+
+    <!-- 结果区 -->
+    <section id="results" class="results"></section>
+  </main>
+
+  <footer class="footer">
+    <p>检索结果来自《栖木家居客服知识资料》2026-10 版本地结构化索引，仅用于客服查找资料依据；资料未覆盖的问题应如实告知无法确认，不得自行编造。</p>
+  </footer>
+
+  <script src="/static/app.js"></script>
+</body>
+</html>

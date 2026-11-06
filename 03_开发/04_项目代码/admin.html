@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>索引管理 · 栖木家居客服知识库</title>
+  <link rel="stylesheet" href="/static/style.css" />
+  <style>
+    .admin-layout { max-width: 960px; margin: 0 auto; padding: 24px 20px 48px; }
+    .panel { background: var(--card); border-radius: 14px; padding: 20px; box-shadow: var(--shadow); margin-bottom: 18px; }
+    .panel h2 { margin: 0 0 6px; font-size: 17px; color: var(--primary-dark); }
+    .panel .desc { font-size: 13px; color: var(--muted); margin: 0 0 14px; }
+    .kv { display: grid; grid-template-columns: 130px 1fr; gap: 8px 14px; font-size: 14px; }
+    .kv dt { color: var(--muted); }
+    .kv dd { margin: 0; color: #1f2937; }
+    .topic-row { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 8px; }
+    .topic-chip { padding: 4px 12px; border-radius: 999px; background: #eef6f1; color: var(--primary-dark); font-size: 13px; }
+    .sections { margin-top: 10px; }
+    .sections li { font-size: 13px; color: #374151; }
+    .drop { border: 2px dashed var(--border); border-radius: 12px; padding: 28px; text-align: center; color: var(--muted); }
+    .drop.dragover { border-color: var(--primary); background: #f2f8f5; }
+    .btn-primary, .btn-ghost { margin-top: 6px; }
+    .msg { margin-top: 12px; padding: 10px 14px; border-radius: 8px; font-size: 14px; }
+    .msg.ok { background: #ecfdf5; border: 1px solid #a7f3d0; color: #065f46; }
+    .msg.err { background: var(--danger-bg); border: 1px solid #fecaca; color: var(--danger); }
+    .back-link { font-size: 13px; color: #2b5cb8; text-decoration: none; }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <span class="brand-logo">栖</span>
+      <div class="brand-text">
+        <h1>索引管理</h1>
+        <p>资料导入 · 解析 · 索引状态确认</p>
+      </div>
+    </div>
+    <div class="topbar-meta">
+      <a class="meta-pill meta-link" href="/">返回检索</a>
+    </div>
+  </header>
+
+  <main class="admin-layout">
+    <section class="panel">
+      <h2>当前索引状态</h2>
+      <p class="desc">以下信息来自本地结构化索引（<code>knowledge_base.json</code>），用于确认资料是否已导入、解析并建立索引。</p>
+      <div id="indexStatus"><div class="empty-state"><span class="icon">⏳</span>正在读取索引状态…</div></div>
+    </section>
+
+    <section class="panel">
+      <h2>导入 / 更新资料</h2>
+      <p class="desc">
+        支持两种格式：<strong>① 课程允许的《栖木家居客服知识资料》200 页 PDF</strong>（需本机安装 PyMuPDF 解析）；
+        <strong>② 已解析的 <code>knowledge_base.json</code></strong>（纯标准库即可解析，无需额外依赖）。
+        导入成功后立即重建索引，并持久化到项目根目录。
+      </p>
+      <div id="drop" class="drop">
+        <div>点击选择文件，或将文件拖拽到此处</div>
+        <div style="font-size:12px;margin-top:4px">支持 .pdf / .json</div>
+        <input type="file" id="fileInput" accept=".pdf,.json,application/pdf,application/json" hidden />
+        <button type="button" id="chooseBtn" class="btn-primary">选择文件</button>
+      </div>
+      <div id="msg" hidden></div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>索引来源与条目数以实际导入为准；资料未覆盖的问题应如实告知无法确认，不得自行编造。</p>
+  </footer>
+
+  <script src="/static/admin.js"></script>
+</body>
+</html>
